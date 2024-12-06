@@ -34,5 +34,11 @@ describe('GET /add', () => {
     expect(res.status).to.equal(200);
     expect(res.body.result).to.equal(6);
   });
+
+  it('should throw an error for negative numbers', async () => {
+    const res = await chai.request(app).get('/add').query({ numbers: '1,-2,3' });
+    expect(res.status).to.equal(400);
+    expect(res.body.error).to.equal('Negative numbers not allowed: -2');
+  }); 
 });
 
