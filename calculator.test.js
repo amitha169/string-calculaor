@@ -28,5 +28,11 @@ describe('GET /add', () => {
     expect(res.status).to.equal(200);
     expect(res.body.result).to.equal(3);
   });
+
+  it('should handle newlines between numbers', async () => {
+    const res = await chai.request(app).get('/add').query({ numbers: '1\n2,3' });
+    expect(res.status).to.equal(200);
+    expect(res.body.result).to.equal(6);
+  });
 });
 
