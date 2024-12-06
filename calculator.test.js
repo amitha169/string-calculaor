@@ -22,5 +22,11 @@ describe('GET /add', () => {
     expect(res.status).to.equal(200);
     expect(res.body.result).to.equal(1);
   });
+
+  it('should return the sum of two numbers', async () => {
+    const res = await chai.request(app).get('/add').query({ numbers: '1,2' });
+    expect(res.status).to.equal(200);
+    expect(res.body.result).to.equal(3);
+  });
 });
 
